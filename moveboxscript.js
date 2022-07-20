@@ -1,12 +1,18 @@
 
-let main = document.getElementById("main");
-let box = document.getElementById("box");
-let flgMoveDown = 1; // animation direction, Ex- 0 for animate right bottom.
+
+let flgMoveDown = 1; // 1: Move down-right, 0: Move down-right
 
 const MoveBox = () => {
+    // Full window
+    let main = document.getElementById("main");
+
+    // Box
+    let box = document.getElementById("box");
+
     let left = box.offsetLeft;
     let top = box.offsetTop;
     if ((left + 100) >= main.clientWidth || (top + 100) >=  main.clientHeight) {
+        // If box location at at bottom or at right corner
         flgMoveDown = 0;
     } 
     
@@ -16,19 +22,18 @@ const MoveBox = () => {
     }
 
     if(flgMoveDown === 1){
+        // Move down-right
         left = (left + 10);
         top = (top + 10);
     } else  {
+        // Move down-right
         left = (left - 10);
         top = (top - 10);
     }
 
     box.style.left = left + "px";
     box.style.top = top + "px";
-
-    setTimeout(function () { MoveBox() }, 1000);
-
 }
 
-setTimeout(function () { MoveBox() }, 1000);
+setInterval(function () { MoveBox() }, 1000);
 
